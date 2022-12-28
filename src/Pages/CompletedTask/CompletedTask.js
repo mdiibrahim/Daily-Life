@@ -53,7 +53,7 @@ const CompletedTask = () => {
             console.log(error)
         }
     }
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit } = useForm();
 
     const onSubmit = (data, event) => {
         event.preventDefault();
