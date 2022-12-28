@@ -37,7 +37,7 @@ const router = createBrowserRouter([
                 element: <SignUp></SignUp>
             },
             {
-                path: '/completed-task',
+                path: '/completed-tasks',
                 element: <CompletedTask></CompletedTask>
             },
             {
