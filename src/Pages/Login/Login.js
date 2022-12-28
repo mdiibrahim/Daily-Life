@@ -4,24 +4,23 @@ import { toast } from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
 import './Login.css'
-import useToken from '../../hooks/useToken';
+
 import { AuthContext } from '../contexts/AuthProvider';
 
 const Login = () => {
     useTitle('Login __ Daily Life');
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { signIn, registerWithGoogle, setCreatedUserEmail, createdUserEmail } = useContext(AuthContext);
+    const { signIn, registerWithGoogle, setCreatedUserEmail,  } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
-    const [loginUserEmail, setLoginUserEmail] = useState('');
-    const [token] = useToken(loginUserEmail);
+
     const location = useLocation();
     const navigate = useNavigate();
 
     const from = location.state?.from?.pathname || '/';
 
-    if (token) {
-        navigate(from, { replace: true });
-    }
+ 
+   
+    
 
     const handleLogin = data => {
         console.log(data);
@@ -31,7 +30,7 @@ const Login = () => {
                 const user = result.user;
                 console.log(user);
                 toast.success('Successfully You entered.')
-                setLoginUserEmail(data.email);
+                navigate(from, { replace: true });
             })
             .catch(error => {
                 console.log(error.message)
@@ -45,7 +44,7 @@ const Login = () => {
                 const user = result.user;
                 saveUser(user.displayName, user.email);
                 toast.success('Successfully You entered.')
-                navigate('/')
+                navigate(from, { replace: true });
 
             })
             .catch(error => {
