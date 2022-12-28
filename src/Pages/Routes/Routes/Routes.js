@@ -28,8 +28,8 @@ const router = createBrowserRouter([
                 element: <Login></Login>
             },
             {
-                path: '/my-task',
-                element: <MyTask></MyTask>,
+                path: '/my-tasks',
+                element: <PrivateRoute><MyTask></MyTask></PrivateRoute>,
                
             },
             {
@@ -38,7 +38,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/completed-tasks',
-                element: <CompletedTask></CompletedTask>
+                element: <PrivateRoute><CompletedTask></CompletedTask></PrivateRoute>
             },
             {
                 path: '/*',
