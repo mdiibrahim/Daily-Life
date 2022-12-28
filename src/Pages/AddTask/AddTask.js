@@ -11,7 +11,7 @@ const AddTask = () => {
     const navigate = useNavigate();
     const onSubmit = (data, event) => {
         event.preventDefault();
-        const { yearOfUse, originalMobilePrice } = data;
+        const { title, details } = data;
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
@@ -28,8 +28,8 @@ const AddTask = () => {
 
                             taskImage: imgData.data.url,
                             completed: 'no',
-                            originalMobilePrice,
-                            yearOfUse
+                            details,
+                            title
 
                         }
                         try {
@@ -87,7 +87,7 @@ const AddTask = () => {
                 <div className="w-full max-w-xs">
                     <label className="label"> <span className="label-text">Enter your task Photo...?</span></label>
                     <input type="file" alt=' ' {...register("image", {
-
+required: 'photo is required'
                     })} className="input input-bordered input-primary w-full " />
                     {errors.image && <small className='text-red-500 mt-4' >{errors.image.message}</small>}
                 </div>
