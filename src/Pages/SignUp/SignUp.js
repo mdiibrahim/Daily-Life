@@ -109,15 +109,15 @@ const SignUp = () => {
                         {errors.password && <p className='text-red-600 mt-4'>{errors.password?.message}</p>}
                     </div>
 
-                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign Up</button>
                     {signUpError && <p className='text-red-600'>{signUpError}</p>}
                 </form>
-                <p>Already have an account <Link className='text-secondary' to="/login">Please Login</Link></p>
+                <p>Already have an account <Link className='text-blue-600 dark:text-blue-500 hover:underline' to="/login">Please Login</Link></p>
                 <div className="inline-flex justify-center items-center w-full ">
                     <hr className="my-8 w-64 h-px bg-gray-200 border-0 dark:bg-gray-700" />
                     <span className="absolute left-1/2 px-3 font-medium text-gray-900 bg-white -translate-x-1/2 dark:text-white dark:bg-gray-900">or</span>
                 </div>
-                <button className="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleLogInWithGoogle}>CONTINUE WITH GOOGLE</button>
+                <button className="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleLogInWithGoogle}>CONTINUE WITH GOOGLE</button>
 
             </div>
 

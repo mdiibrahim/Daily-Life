@@ -1,20 +1,26 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import useTitle from '../../hooks/useTitle';
+import { AuthContext } from '../contexts/AuthProvider';
 
 const AddTask = () => {
     useTitle('Add Your Task __ Daily Life');
     const { register, handleSubmit, formState: { errors } } = useForm();
     const navigate = useNavigate();
+    const { user } = useContext(AuthContext);
+
     const onSubmit = (data, event) => {
         event.preventDefault();
         const { title, details } = data;
+
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
+
+
         try {
             fetch(`https://api.imgbb.com/1/upload?key=${process.env.REACT_APP_imgbb_api_key}`, {
                 method: 'POST',
@@ -25,7 +31,8 @@ const AddTask = () => {
                     if (imgData.success) {
                         console.log(imgData.data.url);
                         const task = {
-
+                            name: user?.displayName,
+                            email: user?.email,
                             taskImage: imgData.data.url,
                             completed: 'no',
                             details,
@@ -46,7 +53,7 @@ const AddTask = () => {
                                 .then(result => {
                                     console.log(result);
                                     toast.success('Your task is added successfully');
-                                    navigate('/my-task')
+
                                 })
                         }
                         catch (error) {
@@ -86,15 +93,22 @@ const AddTask = () => {
                 </div>
                 <div className="w-full max-w-xs">
                     <label className="label"> <span className="label-text">Enter your task Photo...?</span></label>
-                    <input type="file" alt=' ' {...register("image", {
-required: 'photo is required'
-                    })} className="input input-bordered input-primary w-full " />
+                    <input type="file" alt=' ' {...register("image", { required: 'image is required' })} className="input input-bordered input-primary w-full " />
                     {errors.image && <small className='text-red-500 mt-4' >{errors.image.message}</small>}
                 </div>
+                {
+                    user?.uid ?
+                        <button type="submit" className="flex justify-center items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800 mt-4">
+                            Add task
+                        </button>
+                        :
+                        <>
+                            <small className='text-red-500 mt-4' >You need to <Link to='/login' className='text-blue-600 dark:text-blue-500 hover:underline'>log in</Link> first, then add the task</small>
+                        </>
 
-                <button type="submit" className="flex justify-center items-center py-2.5 px-4 text-xs font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800 mt-4">
-                    Add task
-                </button>
+
+                }
+
             </form>
             <p className="ml-auto text-xs text-gray-500 dark:text-gray-400">Remember, you are safe on our place. See our <a href="/" className="text-blue-600 dark:text-blue-500 hover:underline">privacy policy</a>.</p>
 

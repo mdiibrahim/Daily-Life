@@ -4,9 +4,11 @@ import CompletedTask from "../../CompletedTask/CompletedTask";
 import Main from "../../Layout/Main";
 import Login from "../../Login/Login";
 import MyTask from "../../MyTask/MyTask";
+import TaskDetails from "../../MyTask/TaskDetails";
 import DisplayError from "../../Shared/DisplayError/DisplayError";
 import SignUp from "../../SignUp/SignUp";
 import UnknownPageError from "../../UnknownPageError/UnknownPageError";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 
 
@@ -27,7 +29,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/my-task',
-                element: <MyTask></MyTask>
+                element: <MyTask></MyTask>,
+               
             },
             {
                 path: '/signup',
@@ -40,6 +43,11 @@ const router = createBrowserRouter([
             {
                 path: '/*',
                 element: <UnknownPageError></UnknownPageError>
+            },
+            {
+                path: '/tasks/my-tasks/:id',
+                element: <PrivateRoute><TaskDetails></TaskDetails></PrivateRoute>,
+                loader:({params})=>fetch(`http://localhost:5000/tasks/my-tasks/${params.id}`)
             }
         ]
     },

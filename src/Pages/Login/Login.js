@@ -10,7 +10,7 @@ import { AuthContext } from '../contexts/AuthProvider';
 const Login = () => {
     useTitle('Login __ Daily Life');
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { signIn, registerWithGoogle, setCreatedUserEmail,  } = useContext(AuthContext);
+    const { signIn, registerWithGoogle, setCreatedUserEmail, } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
 
     const location = useLocation();
@@ -18,9 +18,9 @@ const Login = () => {
 
     const from = location.state?.from?.pathname || '/';
 
- 
-   
-    
+
+
+
 
     const handleLogin = data => {
         console.log(data);
@@ -89,18 +89,19 @@ const Login = () => {
                         <label for="floating_password" className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">Password</label>
                         {errors.password && <p className='text-red-600'>{errors.password?.message}</p>}
                     </div>
-
-                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Submit</button>
+                    <div className='relative z-0 mb-6 w-full'>
+                        <button type="submit" className="w-full block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm   px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Log In</button>
+                    </div>
                     <div>
                         {loginError && <p className='text-red-600'>{loginError}</p>}
                     </div>
                 </form>
-                <p>New User? <Link className='text-secondary' to="/signup">Create new Account</Link></p>
+                <p>New User? <Link className='text-blue-600 dark:text-blue-500 hover:underline' to="/signup">Create new Account</Link></p>
                 <div className="inline-flex justify-center items-center w-full ">
                     <hr className="my-8 w-64 h-px bg-gray-200 border-0 dark:bg-gray-700" />
                     <span className="absolute left-1/2 px-3 font-medium text-gray-900 bg-white -translate-x-1/2 dark:text-white dark:bg-gray-900">or</span>
                 </div>
-                <button className="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleLogInWithGoogle}>CONTINUE WITH GOOGLE</button>
+                <button className="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={handleLogInWithGoogle}>CONTINUE WITH GOOGLE</button>
             </div>
         </div>
     );
