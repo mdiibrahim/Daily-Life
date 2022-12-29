@@ -17,7 +17,7 @@ const TaskDetails = () => {
                 if (data.deletedCount > 0) {
 
                     toast.success('Successfully deleted the task.')
-                    navigate('/my-task');
+                    navigate('/my-tasks');
                 }
             })
     }
