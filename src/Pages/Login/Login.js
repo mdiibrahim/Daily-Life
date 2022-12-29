@@ -10,7 +10,7 @@ import { AuthContext } from '../contexts/AuthProvider';
 const Login = () => {
     useTitle('Login __ Daily Life');
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const { signIn, registerWithGoogle, setCreatedUserEmail, } = useContext(AuthContext);
+    const { signIn, registerWithGoogle } = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
 
     const location = useLocation();
@@ -63,7 +63,7 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
-                setCreatedUserEmail(email);
+                
             })
     }
 
