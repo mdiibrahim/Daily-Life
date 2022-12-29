@@ -54,7 +54,7 @@ const Login = () => {
     }
     const saveUser = (name, email) => {
         const user = { name, email };
-        fetch('https://daily-life-server-side.vercel.app/users', {
+        fetch('http://localhost:5000/users', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -63,7 +63,7 @@ const Login = () => {
         })
             .then(res => res.json())
             .then(data => {
-                
+
             })
     }
 

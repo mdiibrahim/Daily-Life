@@ -47,7 +47,7 @@ const router = createBrowserRouter([
             {
                 path: '/tasks/my-tasks/:id',
                 element: <PrivateRoute><TaskDetails></TaskDetails></PrivateRoute>,
-                loader: ({ params }) => fetch(`https://daily-life-server-side.vercel.app/tasks/my-tasks/${params.id}`)
+                loader: ({ params }) => fetch(`http://localhost:5000/tasks/my-tasks/${params.id}`)
             }
         ]
     },

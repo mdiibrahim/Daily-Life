@@ -5,7 +5,7 @@ const Footer = () => {
     return (
         <div>
 
-            <footer className="p-4 bg-white sm:p-6 dark:bg-gray-900 mt-80">
+            <footer className="p-4 bg-white sm:p-6 dark:bg-gray-900 mt-96">
                 <div className="md:flex md:justify-between">
                     <div className="mb-6 md:mb-0">
                         <Link to='/' className="flex items-center">
