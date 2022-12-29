@@ -13,14 +13,14 @@ const CompletedTask = () => {
     const { data: completedTasks = [], refetch } = useQuery({
         queryKey: ['completedTasks'],
         queryFn: async () => {
-            const res = await fetch(`http://localhost:5000/completed-tasks/${user?.email}`);
+            const res = await fetch(`https://daily-life-server-side.vercel.app/completed-tasks/${user?.email}`);
             const data = await res.json();
             return data;
         }
     });
 
     const handleDeleteCompletedTask = (id) => {
-        fetch(`http://localhost:5000/tasks/my-tasks/${id}`, {
+        fetch(`https://daily-life-server-side.vercel.app/tasks/my-tasks/${id}`, {
             method: 'Delete',
 
         })
@@ -36,7 +36,7 @@ const CompletedTask = () => {
     }
     const handleNotCompletedTask = (id) => {
         try {
-            axios.put(`http://localhost:5000/tasks/${id}`, {
+            axios.put(`https://daily-life-server-side.vercel.app/tasks/${id}`, {
                 completed: 'no'
             })
                 .then(res => {
@@ -60,7 +60,7 @@ const CompletedTask = () => {
         const { comment } = data;
         try {
 
-            axios.put('http://localhost:5000/completed-tasks/:id', {
+            axios.put('https://daily-life-server-side.vercel.app/completed-tasks/:id', {
 
                 body: JSON.stringify(comment)
             })

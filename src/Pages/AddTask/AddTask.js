@@ -41,7 +41,7 @@ const AddTask = () => {
                         }
                         try {
 
-                            fetch('http://localhost:5000/tasks', {
+                            fetch('https://daily-life-server-side.vercel.app/tasks', {
                                 method: 'POST',
                                 headers: {
                                     'content-type': 'application/json',

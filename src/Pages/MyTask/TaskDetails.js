@@ -7,7 +7,7 @@ const TaskDetails = () => {
     const navigate = useNavigate();
     const { taskImage, title, details, _id } = task;
     const handleDeleteTask = (id) => {
-        fetch(`http://localhost:5000/tasks/my-tasks/${id}`, {
+        fetch(`https://daily-life-server-side.vercel.app/tasks/my-tasks/${id}`, {
             method: 'Delete',
 
         })
@@ -23,7 +23,7 @@ const TaskDetails = () => {
     }
     const handleCompletedTask = (id) => {
         try {
-            axios.put(`http://localhost:5000/tasks/${id}`, {
+            axios.put(`https://daily-life-server-side.vercel.app/tasks/${id}`, {
                 completed: 'yes'
             })
                 .then(res => {
