@@ -94,8 +94,9 @@ const AddTask = () => {
                 </div>
                 <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                     <label htmlFor="task-photo" className="block my-4 text-sm font-medium text-gray-900 dark:text-white">Enter Task photo...?</label>
-                    <input type="file" id='task-photo' alt=' ' {...register("image", { required: 'image is required' })} className=" border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                    {errors.image && <small className='text-red-500 mt-4' >{errors.image.message}</small>}
+                    <input type="file" id='task-photo' alt=' ' {...register("img", { required: 'image is required' })} className=" border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                    {errors.img && <small className='text-red-500 mt-4' >
+                        {errors.img.message}</small>}
                 </div>
                 {
                     user?.uid ?
