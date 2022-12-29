@@ -41,7 +41,7 @@ const AddTask = () => {
                         }
                         try {
 
-                            fetch('http://localhost:5000/tasks', {
+                            fetch('https://daily-life-server-side.vercel.app/tasks', {
                                 method: 'POST',
                                 headers: {
                                     'content-type': 'application/json',
@@ -68,7 +68,7 @@ const AddTask = () => {
     }
     return (
         <div className='mx-auto my-32'>
-             <h1 className='text-center text-2xl text-bold text-primary mt-1'>Add A task:</h1>
+            <h1 className='text-center text-2xl text-bold text-primary mt-1'>Add A task:</h1>
             <form onSubmit={handleSubmit(onSubmit)} className='w-full mb-4 border border-gray-200 rounded-lg bg-gray-50 dark:bg-gray-700 dark:border-gray-600'>
 
                 <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
@@ -93,16 +93,16 @@ const AddTask = () => {
                         {errors.details.message}</small>}
                 </div>
                 <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
-                <label htmlFor="task-photo" className="block my-4 text-sm font-medium text-gray-900 dark:text-white">Enter Task photo...?</label>
-                    <input type="file" id='task-photo' alt=' ' {...register("image", { required: 'image is required' })} className=" border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"/>
+                    <label htmlFor="task-photo" className="block my-4 text-sm font-medium text-gray-900 dark:text-white">Enter Task photo...?</label>
+                    <input type="file" id='task-photo' alt=' ' {...register("image", { required: 'image is required' })} className=" border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
                     {errors.image && <small className='text-red-500 mt-4' >{errors.image.message}</small>}
                 </div>
                 {
                     user?.uid ?
                         <div className='flex justify-center items-center'>
                             <button type="submit" className="my-6 py-2.5 px-4 text-2xl font-bold text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800 mt-4 w-2/6">
-                            Add task
-                        </button>
+                                Add task
+                            </button>
                         </div>
                         :
                         <>

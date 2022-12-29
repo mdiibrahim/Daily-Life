@@ -8,7 +8,7 @@ const MyTask = () => {
     const { user } = useContext(AuthContext);
     const [tasks, setTasks] = useState([]);
     useEffect(() => {
-        fetch(`http://localhost:5000/tasks/${user?.email}`)
+        fetch(`https://daily-life-server-side.vercel.app/tasks/${user?.email}`)
             .then(res => res.json())
             .then(data => setTasks(data))
     }, [user?.email])
@@ -16,7 +16,7 @@ const MyTask = () => {
         <div>
             <div>
                 <h2 className='mt-4 p-6 text-3xl text-center font-semibold'>My  tasks:</h2>
-                <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2 gap-2'>
+                <div className='grid grid-cols-1 lg:grid-cols-3 md:grid-cols-2  gap-2'>
 
                     {
                         tasks.map(task => {
