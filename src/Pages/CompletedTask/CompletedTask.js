@@ -84,7 +84,7 @@ const CompletedTask = () => {
 }
     return (
         <div>
-            <h1 className='text-center text-2xl text-bold text-primary mt-1'>My Completed tasks:</h1>
+            <h2 className='mt-4 p-6 text-3xl text-center font-semibold'>My Completed  tasks:</h2>
             <div className='grid grid-cols-1 lg:grid-cols-2 gap-4'>
                 {
                     completedTasks.map(completedTask => {
