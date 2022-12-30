@@ -86,7 +86,7 @@ const SignUp = () => {
         })
             .then(res => res.json())
             .then(data => {
-                navigate(from, { replace: true });
+                navigate('/');
             })
     }
 

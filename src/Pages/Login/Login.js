@@ -53,7 +53,7 @@ const Login = () => {
                     progress: undefined,
                     theme: "light",
                 });
-                navigate(from, { replace: true });
+                navigate('/');
 
             })
             .catch(error => {

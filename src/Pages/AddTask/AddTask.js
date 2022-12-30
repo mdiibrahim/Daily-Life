@@ -36,7 +36,8 @@ const AddTask = () => {
                             taskImage: imgData.data.url,
                             completed: 'no',
                             details,
-                            title
+                            title,
+                            comments:[]
 
                         }
                         try {
