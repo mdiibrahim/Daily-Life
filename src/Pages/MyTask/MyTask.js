@@ -8,7 +8,7 @@ const MyTask = () => {
     const { user } = useContext(AuthContext);
     const [tasks, setTasks] = useState([]);
     useEffect(() => {
-        fetch(`https://daily-life-server-side.vercel.app/tasks/${user?.email}`)
+        fetch(`http://localhost:5000/tasks/${user?.email}`)
             .then(res => res.json())
             .then(data => setTasks(data))
     }, [user?.email])

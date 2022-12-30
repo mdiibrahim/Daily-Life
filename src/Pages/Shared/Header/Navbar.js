@@ -3,34 +3,35 @@ import { Link } from 'react-router-dom';
 import demo from '../../../assets/images/profile.jpg';
 import { AuthContext } from '../../contexts/AuthProvider';
 import logo from '../../../assets/images/logo.png';
+
 const Navbar = () => {
     const [navbar, setNavbar] = useState(false);
     const { user, logOut } = useContext(AuthContext);
-  const handleLogOut = () => {
-    logOut()
-      .then(() => { })
-      .catch(err => console.log(err));
-  }
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(err => console.log(err));
+    }
     const menuItems = <React.Fragment>
 
 
-    {
-      user?.uid ?
-        <>
+        {
+            user?.uid ?
+                <>
 
-          <li className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><button onClick={handleLogOut}>Sign out</button></li>
-          <div data-tip={user.displayName} className=' -mb-4' >
-            <img src={user?.photoURL ? user.photoURL : demo} alt="" className='rounded-full w-10 ' />
-          </div>
+                    <li className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><button onClick={handleLogOut}>Sign out</button></li>
+                    <div data-tip={user.displayName} className=' -mb-4' >
+                        <img src={user?.photoURL ? user.photoURL : demo} alt="" className='rounded-full w-10 ' />
+                    </div>
 
-        </>
-        :
-        <>
-          <li className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><Link to="/login">Login</Link></li>
+                </>
+                :
+                <>
+                    <li className="block py-2 pl-3 pr-4 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"><Link to="/login">Login</Link></li>
 
-        </>
-    }
-  </React.Fragment>
+                </>
+        }
+    </React.Fragment>
 
     return (
         <nav className="w-full bg-white shadow">
@@ -38,7 +39,7 @@ const Navbar = () => {
                 <div>
                     <div className="flex items-center justify-between py-3 md:py-5 md:block">
                         <Link to='/' className="flex items-center">
-                        <img src={logo} className="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
+                            <img src={logo} className="h-6 mr-3 sm:h-9" alt="Flowbite Logo" />
                             <h2 className="text-2xl font-bold">Daily Life</h2>
                         </Link>
                         <div className="md:hidden">
@@ -96,6 +97,7 @@ const Navbar = () => {
                             </li>
 
                             {menuItems}
+                            
                         </ul>
                     </div>
                 </div>

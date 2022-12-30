@@ -6,11 +6,14 @@ module.exports = {
     'node_modules/flowbite-react/**/*.{js,jsx,ts,tsx}',
     "./src/**/*.{html,js,jsx,ts,tsx}",
   ],
-  
+  darkMode: 'class',
   theme: {
 
   },
   plugins: [
-    require('flowbite/plugin')
-  ]
+    require('flowbite/plugin'),
+
+  ],
+  tailwindcss: {},
+  autoprefixer: {},
 }

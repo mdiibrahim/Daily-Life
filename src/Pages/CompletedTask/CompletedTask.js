@@ -5,22 +5,23 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import { toast } from 'react-hot-toast';
-import { useForm } from 'react-hook-form';
+
 const CompletedTask = () => {
+    
     useTitle('Your Completed Task __ Daily Life');
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
     const { data: completedTasks = [], refetch } = useQuery({
         queryKey: ['completedTasks'],
         queryFn: async () => {
-            const res = await fetch(`https://daily-life-server-side.vercel.app/completed-tasks/${user?.email}`);
+            const res = await fetch(`http://localhost:5000/completed-tasks/${user?.email}`);
             const data = await res.json();
             return data;
         }
     });
 
     const handleDeleteCompletedTask = (id) => {
-        fetch(`https://daily-life-server-side.vercel.app/tasks/my-tasks/${id}`, {
+        fetch(`http://localhost:5000/tasks/my-tasks/${id}`, {
             method: 'Delete',
 
         })
@@ -36,7 +37,7 @@ const CompletedTask = () => {
     }
     const handleNotCompletedTask = (id) => {
         try {
-            axios.put(`https://daily-life-server-side.vercel.app/tasks/${id}`, {
+            axios.put(`http://localhost:5000/tasks/${id}`, {
                 completed: 'no'
             })
                 .then(res => {
@@ -53,28 +54,34 @@ const CompletedTask = () => {
             console.log(error)
         }
     }
-    const { register, handleSubmit } = useForm();
+    const handleComment = (id) => {
+        
+        const comment = document.getElementById('comment-input').value;
 
-    const onSubmit = (data, event) => {
-        event.preventDefault();
-        const { comment } = data;
+        
         try {
 
-            axios.put('https://daily-life-server-side.vercel.app/completed-tasks/:id', {
+            axios.put(`http://localhost:5000/completed-tasks/${id}`, {
 
-                body: JSON.stringify(comment)
+                comments:comment,
+                headers: {
+                    'content-type': 'application/json'
+                },
             })
-                .then(res => res.json())
-                .then(result => {
-                    console.log(result);
-                    toast.success('Your comment is added successfully');
+            .then(res => {
+                console.log(res)
+
+                if (res.data.matchedCount > 0) {
+
+                    toast.success('comment completed.');
                     refetch();
-                })
-        }
-        catch (error) {
-            console.error(error)
-        }
+                }
+
+            })
+    } catch (error) {
+        console.log(error)
     }
+}
     return (
         <div>
             <h1 className='text-center text-2xl text-bold text-primary mt-1'>My Completed tasks:</h1>
@@ -87,19 +94,22 @@ const CompletedTask = () => {
                                 <div className="flex flex-col w-full justify-between p-4 leading-normal">
                                     <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">{completedTask.title}</h5>
                                     <p className="mb-3  font-normal text-gray-700 dark:text-gray-400">{completedTask.details}</p>
+                                    {
+                                        completedTask.comments?.map((comment,idx) => <small key={idx} className="mb-3  font-normal text-gray-700 dark:text-gray-400">{comment}</small> )
+                                    }
+                                    
                                     <div className='flex w-full justify-between gap-2'>
                                         <button className="mt-8  text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => handleDeleteCompletedTask(completedTask._id)}>Delete</button>
                                         <button className="mt-8 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full  px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" onClick={() => handleNotCompletedTask(completedTask._id)}>Incomplete</button>
                                     </div>
-                                    <form onSubmit={handleSubmit(onSubmit)} className='flex justify-between my-4  rounded-lg dark:bg-gray-700 dark:border-gray-600'>
+                                    <div  className='flex justify-between my-4 w-full rounded-lg dark:bg-gray-700 dark:border-gray-600'>
 
-                                        <div >
 
-                                            <input {...register("comment")} type="text" id="base-input" placeholder='add a comment' className=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500  inline  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " />
+                                            <input  type="text" id="comment-input" placeholder='add a comment' className=" w-2/3 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 h-10 mt-4 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 " />
 
-                                            <button type='submit' className="mt-4 inline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm   px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" >Add Comment</button>
-                                        </div>
-                                    </form>
+                                            <button type='submit' onClick={()=>handleComment(completedTask._id)}  className="w-1/3 mt-4 inline text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm   px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" >Add Comment</button>
+                                       
+                                    </div>
                                 </div>
                             </div>)
 
