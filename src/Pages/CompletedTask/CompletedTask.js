@@ -4,7 +4,7 @@ import { AuthContext } from '../contexts/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-hot-toast';
+import { toast } from 'react-toastify';
 
 const CompletedTask = () => {
 
@@ -45,7 +45,16 @@ const CompletedTask = () => {
 
                     if (res.data.matchedCount > 0) {
 
-                        toast.error('not completed.');
+                        toast.error('Not completed.',{
+                            position: "top-center",
+                            autoClose: 2000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                            });
                         navigate('/my-tasks')
                     }
 
@@ -73,7 +82,16 @@ const CompletedTask = () => {
 
                     if (res.data.matchedCount > 0) {
 
-                        toast.success('comment completed.');
+                        toast.success('Comment added.',{
+                            position: "top-center",
+                            autoClose: 2000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                            });
                         refetch();
                     }
 

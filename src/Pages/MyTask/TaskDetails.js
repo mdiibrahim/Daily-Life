@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { toast } from 'react-hot-toast';
+import { toast } from 'react-toastify';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import EditTaskModal from './EditTaskModal/EditTaskModal';
@@ -7,9 +7,11 @@ import EditTaskModal from './EditTaskModal/EditTaskModal';
 import { Button } from 'flowbite-react';
 const TaskDetails = () => {
     const task = useLoaderData();
+   
     const navigate = useNavigate();
     const { taskImage, title, details, _id, completed } = task;
     const [editTask, setEditTask] = useState(false);
+    const [isEditTask, setIsEditTask] = useState(false);
     const handleDeleteTask = (id) => {
         fetch(`https://daily-life-server-side.vercel.app/tasks/my-tasks/${id}`, {
             method: 'Delete',
@@ -20,7 +22,17 @@ const TaskDetails = () => {
                 console.log(data)
                 if (data.deletedCount > 0) {
 
-                    toast.success('Successfully deleted the task.')
+                    
+                    toast.warn('Successfully deleted the task.', {
+                        position: "top-center",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true,
+                        progress: undefined,
+                        theme: "light",
+                        });
                     navigate('/my-tasks');
                 }
             })
@@ -35,7 +47,17 @@ const TaskDetails = () => {
 
                     if (res.data.matchedCount > 0) {
 
-                        toast.success('Successfully completed the task.');
+                        
+                        toast.success('Task completed Successfully.', {
+                            position: "top-center",
+                            autoClose: 2000,
+                            hideProgressBar: false,
+                            closeOnClick: true,
+                            pauseOnHover: true,
+                            draggable: true,
+                            progress: undefined,
+                            theme: "light",
+                            });
                         navigate('/completed-tasks')
                     }
 
@@ -43,6 +65,9 @@ const TaskDetails = () => {
         } catch (error) {
             console.log(error)
         }
+    }
+    if (isEditTask) {
+        window.location.reload();
     }
 
     return (
@@ -70,6 +95,7 @@ const TaskDetails = () => {
                                 editTask && <EditTaskModal
                                     task={task}
                                     setEditTask={setEditTask}
+                                    setIsEditTask={setIsEditTask}
                                     editTask={editTask}
                                 ></EditTaskModal>
                             }

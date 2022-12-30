@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
+import { toast } from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
 import './Login.css'
@@ -43,7 +43,16 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 saveUser(user.displayName, user.email);
-                toast.success('Successfully You entered.')
+                toast.success('Successfully You entered.', {
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                });
                 navigate(from, { replace: true });
 
             })

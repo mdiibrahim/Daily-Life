@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import toast from 'react-hot-toast';
+import {toast} from 'react-toastify';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useTitle from '../../hooks/useTitle';
 
@@ -27,7 +27,16 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
-                toast.success('Successfully Your registration done.')
+                toast.success('Successfully Your registration done.',{
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    });
                 const userInfo = {
                     displayName: data.name
                 }
@@ -48,7 +57,16 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 saveUser(user.displayName, user.email);
-                toast.success('Successfully Your registration done.')
+                toast.success('Successfully Your registration done.',{
+                    position: "top-center",
+                    autoClose: 2000,
+                    hideProgressBar: false,
+                    closeOnClick: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    progress: undefined,
+                    theme: "light",
+                    })
 
             })
             .catch(error => {

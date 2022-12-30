@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
+import { toast } from 'react-toastify';
 import { Link, useNavigate } from 'react-router-dom';
 
 import useTitle from '../../hooks/useTitle';
@@ -52,7 +52,16 @@ const AddTask = () => {
                                 .then(res => res.json())
                                 .then(result => {
                                     console.log(result);
-                                    toast.success('Your task is added successfully');
+                                    toast.success('Task added successfully.', {
+                                        position: "top-center",
+                                        autoClose: 2000,
+                                        hideProgressBar: false,
+                                        closeOnClick: true,
+                                        pauseOnHover: true,
+                                        draggable: true,
+                                        progress: undefined,
+                                        theme: "light",
+                                        });
                                     navigate('/my-tasks')
                                 })
                         }

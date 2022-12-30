@@ -2,14 +2,14 @@
 import React from 'react';
 import { Modal } from 'flowbite-react';
 import { useForm } from 'react-hook-form';
-import { toast } from 'react-hot-toast';
-import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+
 import axios from 'axios';
-const EditTaskModal = ({ task, editTask, setEditTask }) => {
-    const { taskImage, title, details, _id } = task;
+const EditTaskModal = ({ task, editTask, setEditTask, setIsEditTask }) => {
+    const {  title, details, _id } = task;
 
     const { register, handleSubmit } = useForm();
-    const navigate = useNavigate();
+   
     const onSubmit = (data, event) => {
         event.preventDefault();
         const { title, details } = data;
@@ -45,8 +45,18 @@ const EditTaskModal = ({ task, editTask, setEditTask }) => {
 
                                         if (res.data.matchedCount > 0) {
 
-                                            toast.success('Successfully updated the task.');
-                                            setEditTask(false)
+                                            toast.info('Task Updated', {
+                                                position: "top-center",
+                                                autoClose: 2000,
+                                                hideProgressBar: false,
+                                                closeOnClick: true,
+                                                pauseOnHover: true,
+                                                draggable: true,
+                                                progress: undefined,
+                                                theme: "light",
+                                                });
+                                            setEditTask(false);
+                                            setIsEditTask(true);
                                         }
 
                                     })
@@ -77,9 +87,19 @@ const EditTaskModal = ({ task, editTask, setEditTask }) => {
                         console.log(res)
 
                         if (res.data.matchedCount > 0) {
+                            toast.info('Task Updated', {
+                                position: "top-center",
+                                autoClose: 2000,
+                                hideProgressBar: false,
+                                closeOnClick: true,
+                                pauseOnHover: true,
+                                draggable: true,
+                                progress: undefined,
+                                theme: "light",
+                                });
+                            setEditTask(false);
+                            setIsEditTask(true);
 
-                            toast.success('Successfully updated the task.');
-                            setEditTask(false)
                         }
 
                     })
