@@ -30,7 +30,7 @@ const EditTaskModal = ({ task, editTask, setEditTask }) => {
                             console.log(imgData.data.url);
                             try {
 
-                                axios.put(`http://localhost:5000/update-tasks/${_id}`, {
+                                axios.put(`https://daily-life-server-side.vercel.app/update-tasks/${_id}`, {
 
                                     headers: {
                                         'content-type': 'application/json',
@@ -65,7 +65,7 @@ const EditTaskModal = ({ task, editTask, setEditTask }) => {
         else {
             try {
 
-                axios.put(`http://localhost:5000/update-tasks/${_id}`, {
+                axios.put(`https://daily-life-server-side.vercel.app/update-tasks/${_id}`, {
                     headers: {
                         'content-type': 'application/json',
                         // authorization: `bearer ${localStorage.getItem('accessToken')}`
@@ -125,7 +125,7 @@ const EditTaskModal = ({ task, editTask, setEditTask }) => {
                             </div>
                             <div className="px-4 py-2 bg-white rounded-t-lg dark:bg-gray-800">
                                 <label htmlFor="task-photo" className="block my-4 text-sm font-medium text-gray-900 dark:text-white">Update Task photo...?</label>
-                                <input  type="file" id='task-photo' alt=' ' {...register("image")} className=" border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                                <input type="file" id='task-photo' alt=' ' {...register("image")} className=" border border-gray-300 text-gray-900 rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" />
 
                             </div>
                             <button type="submit" className="my-6 w-full py-2.5 px-4 text-lg font-bold text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800 mt-4">
